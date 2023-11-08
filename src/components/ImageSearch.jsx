@@ -5,7 +5,6 @@ const apiKey = import.meta.env.VITE_APP_FLICKR_API_KEY;
 import { Grid } from '@mantine/core';
 
 
-// import classes from "./imageSearch.module.css"
 const SearchContainer = styled.div`
   text-align: center;
   margin-top: 20px;
@@ -48,13 +47,7 @@ const ImageSearch = () => {
     }
   }, [query]);
 
-  const openImageModal = (image) => {
-    setSelectedImage(image);
-  };
 
-  const closeImageModal = () => {
-    setSelectedImage(null);
-  };
 
   return (
     <SearchContainer>
@@ -85,26 +78,12 @@ const ImageSearch = () => {
               key={image.id}
               src={`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`}
               alt={image.title}
-              onClick={() => openImageModal(image)}
+            
             />
           ))}
           </Grid.Col>
         </Grid>
       </div>
-      {selectedImage && (
-        <Modal
-          opened={selectedImage !== null}
-          onClose={closeImageModal}
-          size="md"
-          padding="xs"
-          title={selectedImage.title}
-        >
-          <img
-            src={`https://farm${selectedImage.farm}.staticflickr.com/${selectedImage.server}/${selectedImage.id}_${selectedImage.secret}.jpg`}
-            alt={selectedImage.title}
-          />
-        </Modal>
-      )}
     </SearchContainer>
 
   );
